@@ -1,0 +1,24 @@
+# Robots.txt para Velho Hábito - Otimizado para SEO
+# https://velhohabito.pt
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Sitemaps
+Sitemap: https://velhohabito.pt/sitemap.xml
+
+# Crawl-delay (opcional - remover se não necessário)
+# Crawl-delay: 1
+
+# User-agents específicos
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+

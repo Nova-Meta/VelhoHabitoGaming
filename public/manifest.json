@@ -1,0 +1,25 @@
+{
+  "name": "Velho Hábito - Café-Snack Bar",
+  "short_name": "Velho Hábito",
+  "description": "O teu espaço de eleição para café de qualidade e snacks deliciosos em Santo Tirso",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0B0B",
+  "theme_color": "#0B0B0B",
+  "orientation": "portrait-primary",
+  "categories": ["food", "lifestyle"],
+  "lang": "pt-PT",
+  "icons": [
+    {
+      "src": "/images/FavIco.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/FavIco.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+

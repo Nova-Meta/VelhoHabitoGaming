@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Círculo dourado (badge) - raio 50 -->
+  <circle cx="50" cy="50" r="50" fill="#B88B40"/>
+  <!-- Logo placeholder - 150% da altura do badge, será cortado pelo overflow -->
+  <!-- Altura: 100 * 1.5 = 150, mas ajustado para caber visualmente -->
+  <circle cx="50" cy="50" r="48" fill="#0B0B0B" opacity="0.15"/>
+  <text x="50" y="60" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#0B0B0B" text-anchor="middle">VH</text>
+</svg>
+

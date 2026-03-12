@@ -6,7 +6,7 @@ import type { MenuItem } from '../data/menu'
 type CategoryId = MenuItem['category']
 
 export function Menu() {
-  const [activeCategory, setActiveCategory] = useState<CategoryId>('bebidas-quentes')
+  const [activeCategory, setActiveCategory] = useState<CategoryId>('cafes')
 
   const filteredItems = menuItems.filter(item => item.category === activeCategory)
   const activeCat = menuCategories.find(c => c.id === activeCategory)
@@ -85,9 +85,17 @@ export function Menu() {
                       className="flex items-center justify-between py-4 border-b border-stone-100 last:border-0 group hover:bg-stone-50 -mx-4 px-4 rounded-lg transition-colors"
                     >
                       <div className="flex-1">
-                        <h3 className="font-medium text-brand-dark group-hover:text-brand-teal transition-colors">
-                          {item.name}
-                        </h3>
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-medium text-brand-dark group-hover:text-brand-teal transition-colors">
+                            {item.name}
+                          </h3>
+                          {item.badge === 'popular' && (
+                            <span className="text-[0.6rem] font-semibold px-1.5 py-0.5 bg-brand-orange/10 text-brand-orange rounded-full uppercase">Popular</span>
+                          )}
+                          {item.badge === 'especial' && (
+                            <span className="text-[0.6rem] font-semibold px-1.5 py-0.5 bg-brand-purple/10 text-brand-purple rounded-full uppercase">Especial</span>
+                          )}
+                        </div>
                         {item.description && (
                           <p className="text-xs text-stone-400 mt-0.5">{item.description}</p>
                         )}

@@ -5,8 +5,8 @@ import { menuItems } from '../../data/menu'
 
 const previewCategories = [
   {
-    id: 'bebidas-quentes' as const,
-    label: 'Bebidas Quentes',
+    id: 'cafes' as const,
+    label: 'Cafés',
     icon: '☕',
     color: 'from-orange-100 to-orange-50',
     accent: 'text-brand-orange',
@@ -14,7 +14,7 @@ const previewCategories = [
   {
     id: 'snacks' as const,
     label: 'Snacks',
-    icon: '🍟',
+    icon: '🥪',
     color: 'from-teal-100 to-teal-50',
     accent: 'text-brand-teal',
   },

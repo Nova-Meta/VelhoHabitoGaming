@@ -71,18 +71,14 @@ export function Footer() {
             <div className="space-y-3 text-sm text-stone-300">
               <p>
                 <span className="text-white font-medium">Morada:</span><br />
-                Rua Exemplo, 123<br />
+                Praça 25 de Abril<br />
                 4780 Santo Tirso
               </p>
               <p>
-                <span className="text-white font-medium">Telefone:</span><br />
-                +351 912 345 678
-              </p>
-              <p>
                 <span className="text-white font-medium">Horário:</span><br />
-                Ter-Sex: 14:00 - 23:00<br />
-                Sáb-Dom: 11:00 - 00:00<br />
-                Seg: Encerrado
+                Dom-Qui: 15:30 - 00:00<br />
+                Sex-Sáb: 15:30 - 02:00<br />
+                Terça: Encerrado
               </p>
             </div>
 
