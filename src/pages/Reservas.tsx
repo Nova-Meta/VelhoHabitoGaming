@@ -11,11 +11,17 @@ interface ReservationForm {
   players: string
   gamePreference: string
   notes: string
+  sessionType: 'casual' | 'campanha' | 'torneio' | 'tcg'
+  experience: 'iniciante' | 'misto' | 'veteranos'
+  mood: 'rir' | 'pensar' | 'familia' | 'date' | ''
 }
 
 const timeSlots = [
-  '14:00', '15:00', '16:00', '17:00', '18:00',
-  '19:00', '20:00', '21:00', '22:00',
+  '15:30', '16:00', '16:30', '17:00', '17:30',
+  '18:00', '18:30', '19:00', '19:30', '20:00',
+  '20:30', '21:00', '21:30', '22:00', '22:30',
+  '23:00', '23:30', '00:00', '00:30', '01:00',
+  '01:30', '02:00',
 ]
 
 export function Reservas() {
@@ -28,11 +34,18 @@ export function Reservas() {
     players: '2',
     gamePreference: '',
     notes: '',
+    sessionType: 'casual',
+    experience: 'misto',
+    mood: '',
   })
   const [submitted, setSubmitted] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  const updateField = <K extends keyof ReservationForm>(key: K, value: ReservationForm[K]) => {
+    setForm(prev => ({ ...prev, [key]: value }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -67,6 +80,10 @@ export function Reservas() {
           <p className="text-stone-400 text-sm">
             Enviámos um email de confirmação para <strong>{form.email}</strong>.
             Até breve no Velho Hábito!
+          </p>
+          <p className="text-stone-400 text-xs mt-3">
+            Sessão: <strong>{form.sessionType}</strong> &bull; Nível:{' '}
+            <strong>{form.experience}</strong>
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -115,6 +132,30 @@ export function Reservas() {
           onSubmit={handleSubmit}
           className="bg-white rounded-3xl border border-stone-200 shadow-lg p-8 md:p-10"
         >
+          <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="flex flex-col items-start md:items-center gap-2">
+              <p className="text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-brand-teal">
+                Passo 1
+              </p>
+              <p className="text-sm font-medium text-brand-dark">Escolhe a tua party</p>
+              <p className="text-xs text-stone-400">Quantos jogadores vêm contigo.</p>
+            </div>
+            <div className="flex flex-col items-start md:items-center gap-2">
+              <p className="text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-brand-teal">
+                Passo 2
+              </p>
+              <p className="text-sm font-medium text-brand-dark">Marca o horário</p>
+              <p className="text-xs text-stone-400">Dentro do nosso horário da casa.</p>
+            </div>
+            <div className="flex flex-col items-start md:items-center gap-2">
+              <p className="text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-brand-teal">
+                Passo 3
+              </p>
+              <p className="text-sm font-medium text-brand-dark">Escolhe o mood</p>
+              <p className="text-xs text-stone-400">Nós tratamos do resto.</p>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-brand-dark mb-2">Nome *</label>
@@ -165,6 +206,80 @@ export function Reservas() {
                 ))}
                 <option value="8+">8+ jogadores</option>
               </select>
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-brand-dark mb-2">Modo de Jogo</label>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { id: 'casual', label: 'Casual & Chill' },
+                  { id: 'campanha', label: 'Campanha / Legacy' },
+                  { id: 'torneio', label: 'Torneio / Ranking' },
+                  { id: 'tcg', label: 'Só TCGs' },
+                ].map(option => (
+                  <button
+                    key={option.id}
+                    type="button"
+                    onClick={() => updateField('sessionType', option.id as ReservationForm['sessionType'])}
+                    className={`px-3 py-2 rounded-xl text-xs font-medium border transition-colors ${
+                      form.sessionType === option.id
+                        ? 'bg-brand-orange text-white border-brand-orange'
+                        : 'bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-orange/40'
+                    }`}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-brand-dark mb-2">Nível da Mesa</label>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    { id: 'iniciante', label: 'Iniciantes' },
+                    { id: 'misto', label: 'Misto' },
+                    { id: 'veteranos', label: 'Veteranos' },
+                  ].map(option => (
+                    <button
+                      key={option.id}
+                      type="button"
+                      onClick={() => updateField('experience', option.id as ReservationForm['experience'])}
+                      className={`px-3 py-2 rounded-xl text-xs font-medium border transition-colors ${
+                        form.experience === option.id
+                          ? 'bg-brand-teal text-white border-brand-teal'
+                          : 'bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-teal/40'
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-brand-dark mb-2">Mood da Sessão</label>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    { id: 'rir', label: 'Rir muito' },
+                    { id: 'pensar', label: 'Pensar muito' },
+                    { id: 'familia', label: 'Família' },
+                    { id: 'date', label: 'Date night' },
+                  ].map(option => (
+                    <button
+                      key={option.id}
+                      type="button"
+                      onClick={() => updateField('mood', option.id as ReservationForm['mood'])}
+                      className={`px-3 py-2 rounded-xl text-xs font-medium border transition-colors ${
+                        form.mood === option.id
+                          ? 'bg-brand-purple text-white border-brand-purple'
+                          : 'bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-purple/40'
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
             <div>
               <label className="block text-sm font-medium text-brand-dark mb-2">Data *</label>
