@@ -8,89 +8,70 @@ export function LocationSection() {
   return (
     <section
       ref={ref}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-teal-dark text-white relative overflow-hidden"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-teal text-white relative overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
+      <div className="max-w-6xl mx-auto relative z-10 space-y-6">
+        {/* Título e texto principal fora do cartão escuro */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
+          className="max-w-3xl mb-4 mx-auto text-center"
         >
-          <p className="text-brand-orange-light font-semibold text-sm tracking-[0.2em] uppercase mb-2">
+          <span className="text-brand-orange font-semibold text-sm tracking-[0.2em] uppercase">
             Onde Jogamos
-          </p>
-          <h2 className="font-heading text-4xl md:text-5xl tracking-tight mb-4">
-            PRAÇA 25 DE ABRIL, SANTO TIRSO
-          </h2>
-          <p className="text-stone-200 text-sm md:text-base leading-relaxed mb-4">
-            O Velho Hábito vive no coração da Praça 25 de Abril — a mesma praça que
-            sempre fez parte da rotina de quem cresce em Santo Tirso.
-          </p>
-          <p className="text-stone-300 text-sm leading-relaxed">
-            Entre uma ida ao rio, um passeio ao Mosteiro ou um café rápido depois do
-            trabalho, estamos ali para transformar um “vamos só ali” numa noite de jogo.
+          </span>
+          <h3 className="font-heading text-3xl md:text-4xl tracking-tight mb-3">
+            UMA JOGADA NO CENTRO DO TABULEIRO
+          </h3>
+          <p className="text-stone-100 text-sm md:text-base leading-relaxed">
+            A ideia é simples: antes ou depois de outros planos na praça, o Velho Hábito
+            é o sítio onde a noite continua — com cartas, dados e muito café.
           </p>
         </motion.div>
 
+        {/* Mapa em estilo tabuleiro com mais separação e pontos extra */}
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: -30 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="bg-brand-dark/30 backdrop-blur-md rounded-3xl border border-white/10 p-6 md:p-8 relative overflow-hidden"
+          className="bg-brand-dark/5 rounded-3xl border border-white/10 p-6 md:p-8 relative overflow-hidden"
         >
-          <div className="absolute -top-16 -right-10 w-40 h-40 bg-brand-orange/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-16 -left-10 w-40 h-40 bg-brand-purple/10 rounded-full blur-3xl" />
+          <div className="absolute -top-16 -left-12 w-32 h-32 bg-brand-orange/10 rounded-full blur-2xl" />
+          <div className="absolute -bottom-20 -right-10 w-36 h-36 bg-brand-purple/10 rounded-full blur-2xl" />
 
           <div className="relative z-10">
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-brand-orange-light mb-3">
-              Mapa da Mesa
+              Tabuleiro da Praça
             </p>
-            <div className="bg-brand-teal rounded-2xl p-4 mb-4 shadow-lg shadow-black/20">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-medium text-stone-200">
-                  PRAÇA 25 DE ABRIL
-                </span>
-                <span className="text-[0.65rem] text-stone-300">
-                  Centro &bull; Santo Tirso
-                </span>
+            <div className="aspect-[16/9] rounded-2xl border border-white/15 bg-gradient-to-br from-brand-dark/40 via-teal-900/40 to-teal-800/40 p-4 grid grid-cols-5 grid-rows-3 gap-3">
+              {/* Linha 1 (topo) – bloco único de estacionamento + hotel agrupado */}
+              <div className="col-span-2 row-span-2 rounded-xl bg-teal-700/70 flex items-center justify-center text-[0.7rem] font-semibold tracking-[0.12em] text-stone-100 text-center px-3 uppercase">
+                Estacionamento
               </div>
-              <div className="aspect-[4/3] rounded-xl border border-teal-700 bg-gradient-to-br from-teal-900 via-teal-800 to-brand-dark relative overflow-hidden">
-                <div className="absolute inset-3 grid grid-cols-3 grid-rows-3 gap-2">
-                  <div className="rounded-lg bg-teal-700/60" />
-                  <div className="rounded-lg bg-teal-700/40" />
-                  <div className="rounded-lg bg-teal-700/60" />
-                  <div className="rounded-lg bg-teal-700/40" />
-                  <div className="rounded-lg bg-brand-orange flex items-center justify-center text-[0.6rem] font-bold text-white shadow-lg shadow-brand-orange/40">
-                    VELHO<br />HÁBITO
-                  </div>
-                  <div className="rounded-lg bg-teal-700/50" />
-                  <div className="rounded-lg bg-teal-700/70" />
-                  <div className="rounded-lg bg-teal-700/40" />
-                  <div className="rounded-lg bg-teal-700/60" />
-                </div>
-                <div className="absolute inset-0 pointer-events-none border border-white/10 rounded-xl" />
+              <div className="col-span-2 rounded-xl bg-teal-700/60 flex items-center justify-center text-[0.7rem] font-semibold tracking-[0.12em] text-stone-100 text-center px-3 uppercase">
+                Hotel&nbsp;Cidnay
               </div>
-            </div>
+              <div className="rounded-xl bg-teal-700/40" />
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-stone-200">
-              <div>
-                <p className="font-semibold mb-1">Estacionamento</p>
-                <p className="text-stone-300">
-                  Várias opções na envolvente da praça e ruas adjacentes.
-                </p>
+              {/* Linha 2 (meio) – câmara e VH agrupados em blocos verticais */}
+              {/* duas primeiras colunas já são o bloco de estacionamento (row-span-2) */}
+              <div className="row-span-2 rounded-xl bg-teal-600/70 flex items-center justify-center text-[0.7rem] font-semibold tracking-[0.12em] text-stone-100 text-center px-3 uppercase">
+                Câmara<br />Municipal
               </div>
-              <div>
-                <p className="font-semibold mb-1">Transportes</p>
-                <p className="text-stone-300">
-                  A poucos minutos a pé das principais paragens de autocarro.
-                </p>
+              <div className="rounded-xl bg-teal-700/40" />
+              <div className="row-span-2 rounded-xl bg-brand-orange flex items-center justify-center text-[0.7rem] font-semibold tracking-[0.12em] text-white shadow-lg shadow-brand-orange/50 uppercase">
+                Velho<br />Hábito
               </div>
-              <div>
-                <p className="font-semibold mb-1">Melhor hora</p>
-                <p className="text-stone-300">
-                  Fim de tarde para cafés longos, noite para campanhas épicas.
-                </p>
-              </div>
+
+              {/* Linha 3 (baixo) – continua bloco de câmara e VH, com espaço livre à volta */}
+              {/* col 1-2: continuação visual do estacionamento à frente (já transmitido pelo bloco de cima) */}
+              <div className="rounded-xl bg-teal-700/50" />
+              <div className="rounded-xl bg-teal-700/50" />
+              {/* col 3: continuação da Câmara (row-span-2) */}
+              <div className="rounded-xl bg-teal-700/40" />
+              {/* col 5: continuação do VH (row-span-2) */}
+              <div className="rounded-xl bg-teal-700/40" />
             </div>
           </div>
         </motion.div>

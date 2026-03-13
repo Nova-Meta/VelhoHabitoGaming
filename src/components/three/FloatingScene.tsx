@@ -4,25 +4,23 @@ import { Float, Environment } from '@react-three/drei'
 import type * as THREE from 'three'
 
 function Dice({ position, color, scale = 1 }: { position: [number, number, number]; color: string; scale?: number }) {
-  const meshRef = useRef<THREE.Mesh>(null)
+  const groupRef = useRef<THREE.Group>(null)
+  const verticalRotation: [number, number, number] = [Math.PI / 2, 0, 0]
 
   useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.2
-      meshRef.current.rotation.z = Math.cos(state.clock.elapsedTime * 0.2) * 0.15
+    if (groupRef.current) {
+      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.2
     }
   })
 
   return (
     <Float speed={1.5} rotationIntensity={0.4} floatIntensity={0.8}>
-      <mesh ref={meshRef} position={position} scale={scale} castShadow>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial
-          color={color}
-          roughness={0.3}
-          metalness={0.1}
-        />
-      </mesh>
+      <group ref={groupRef} position={position} scale={scale}>
+        <mesh rotation={verticalRotation} castShadow>
+          <cylinderGeometry args={[0.7, 0.7, 0.2, 32]} />
+          <meshStandardMaterial color={color} roughness={0.3} metalness={0.1} />
+        </mesh>
+      </group>
     </Float>
   )
 }
@@ -66,27 +64,68 @@ function D20({ position, color, scale = 1 }: { position: [number, number, number
     <Float speed={1.2} rotationIntensity={0.5} floatIntensity={0.6}>
       <mesh ref={meshRef} position={position} scale={scale} castShadow>
         <icosahedronGeometry args={[0.6, 0]} />
-        <meshStandardMaterial
-          color={color}
-          roughness={0.25}
-          metalness={0.15}
-        />
+        <meshStandardMaterial color={color} roughness={0.25} metalness={0.15} />
       </mesh>
     </Float>
   )
 }
 
 function SceneContent() {
-  const objects = useMemo(() => [
-    { type: 'dice', position: [-3, 1.5, -1] as [number, number, number], color: '#ea580c', scale: 0.9 },
-    { type: 'dice', position: [3.5, -0.5, -2] as [number, number, number], color: '#115e59', scale: 0.7 },
-    { type: 'meeple', position: [-2, -1, 0] as [number, number, number], color: '#f97316', scale: 0.8 },
-    { type: 'meeple', position: [2, 1.5, -1.5] as [number, number, number], color: '#9333ea', scale: 0.6 },
-    { type: 'd20', position: [0.5, -1.5, 0] as [number, number, number], color: '#ea580c', scale: 1 },
-    { type: 'd20', position: [-3.5, -0.5, -2] as [number, number, number], color: '#9333ea', scale: 0.7 },
-    { type: 'dice', position: [4, 2, -3] as [number, number, number], color: '#0d9488', scale: 0.5 },
-    { type: 'meeple', position: [-4, 2.5, -2] as [number, number, number], color: '#ea580c', scale: 0.5 },
-  ], [])
+  const objects = useMemo(() => {
+    const jitter = (amount: number) => (Math.random() - 0.5) * amount
+    const colors = ['#ea580c', '#f97316', '#115e59', '#0d9488', '#9333ea']
+
+    return [
+      {
+        type: 'dice',
+        position: [-3 + jitter(0.8), 1.5 + jitter(0.6), -1 + jitter(0.5)] as [number, number, number],
+        color: colors[0],
+        scale: 0.6,
+      },
+      {
+        type: 'dice',
+        position: [3.2 + jitter(0.8), -0.8 + jitter(0.6), -2 + jitter(0.5)] as [number, number, number],
+        color: colors[2],
+        scale: 0.7,
+      },
+      {
+        type: 'meeple',
+        position: [-2 + jitter(0.6), -1.3 + jitter(0.6), 0 + jitter(0.4)] as [number, number, number],
+        color: colors[1],
+        scale: 0.8,
+      },
+      {
+        type: 'meeple',
+        position: [2 + jitter(0.6), 1.4 + jitter(0.6), -1.5 + jitter(0.4)] as [number, number, number],
+        color: colors[4],
+        scale: 0.6,
+      },
+      {
+        type: 'd20',
+        position: [0.5 + jitter(0.5), -1.6 + jitter(0.5), 0 + jitter(0.4)] as [number, number, number],
+        color: colors[0],
+        scale: 1,
+      },
+      {
+        type: 'd20',
+        position: [-3.4 + jitter(0.5), -0.4 + jitter(0.5), -2 + jitter(0.4)] as [number, number, number],
+        color: colors[4],
+        scale: 0.7,
+      },
+      {
+        type: 'dice',
+        position: [4.5 + jitter(0.4), 1.2 + jitter(0.4), -3 + jitter(0.4)] as [number, number, number],
+        color: colors[3],
+        scale: 0.5,
+      },
+      {
+        type: 'meeple',
+        position: [-4 + jitter(0.6), 2.5 + jitter(0.6), -2 + jitter(0.4)] as [number, number, number],
+        color: colors[1],
+        scale: 0.5,
+      },
+    ]
+  }, [])
 
   return (
     <>

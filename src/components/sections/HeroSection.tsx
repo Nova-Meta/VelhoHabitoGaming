@@ -72,15 +72,6 @@ export function HeroSection() {
             transition={{ delay: 1, duration: 0.6 }}
             className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Link to="/reservas">
-              <motion.button
-                whileHover={{ scale: 1.05, rotate: 1 }}
-                whileTap={{ scale: 0.97 }}
-                className="px-8 py-4 bg-brand-orange text-white font-bold text-lg rounded-2xl shadow-lg shadow-brand-orange/30 hover:shadow-xl hover:shadow-brand-orange/40 transition-shadow"
-              >
-                Reserva a Tua Mesa
-              </motion.button>
-            </Link>
             <Link to="/jogos">
               <motion.button
                 whileHover={{ scale: 1.05, rotate: -1 }}
@@ -90,24 +81,18 @@ export function HeroSection() {
                 Explorar Jogos
               </motion.button>
             </Link>
+            <Link to="/reservas">
+              <motion.button
+                whileHover={{ scale: 1.05, rotate: 1 }}
+                whileTap={{ scale: 0.97 }}
+                className="px-8 py-4 bg-brand-orange text-white font-bold text-lg rounded-2xl shadow-lg shadow-brand-orange/30 hover:shadow-xl hover:shadow-brand-orange/40 transition-shadow"
+              >
+                Reserva a Tua Mesa
+              </motion.button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-          className="w-6 h-10 border-2 border-brand-teal/30 rounded-full flex items-start justify-center p-1.5"
-        >
-          <motion.div className="w-1.5 h-3 bg-brand-teal/40 rounded-full" />
-        </motion.div>
-      </motion.div>
     </section>
   )
 }

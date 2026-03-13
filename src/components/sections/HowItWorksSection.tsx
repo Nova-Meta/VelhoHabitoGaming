@@ -9,8 +9,8 @@ export function HowItWorksSection() {
   const steps = [
     {
       id: 1,
-      title: 'RESERVA A MESA',
-      description: 'Marca o dia, escolhe o horário e diz-nos quantos jogadores vêm à aventura.',
+      title: 'APARECE OU RESERVA',
+      description: 'Podes simplesmente aparecer ou reservar mesa — diz-nos quantos vêm jogar.',
       icon: D6Icon,
     },
     {
@@ -30,7 +30,7 @@ export function HowItWorksSection() {
   return (
     <section
       ref={ref}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-stone-50 to-white"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-teal"
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -39,15 +39,15 @@ export function HowItWorksSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <span className="text-brand-teal font-semibold text-sm tracking-[0.2em] uppercase">
+          <span className="text-brand-orange-light font-semibold text-sm tracking-[0.2em] uppercase">
             Como Funciona
           </span>
-          <h2 className="font-heading text-4xl md:text-5xl text-brand-dark mt-2 tracking-tight">
+          <h2 className="font-heading text-4xl md:text-5xl text-white mt-2 tracking-tight">
             A TUA NOITE, EM 3 PASSOS
           </h2>
-          <p className="mt-4 text-stone-500 max-w-2xl mx-auto">
-            Reservar no Velho Hábito é simples: pensa na tua party, escolhe o mood da noite
-            e nós tratamos do resto.
+          <p className="mt-4 text-stone-200 max-w-2xl mx-auto">
+            Vir jogar ao Velho Hábito é simples: pensa na tua party, escolhe o mood da noite
+            e nós tratamos do resto — com ou sem reserva.
           </p>
         </motion.div>
 

@@ -13,25 +13,25 @@ const iconMap = {
 
 const colorMap = {
   tcg: {
-    bg: 'bg-brand-purple/5',
-    border: 'border-brand-purple/20',
-    icon: 'text-brand-purple',
+    bg: 'bg-brand-purple/25',
+    border: 'border-brand-purple/40',
+    icon: 'text-brand-purple-light',
     accent: 'bg-brand-purple',
-    hoverBorder: 'hover:border-brand-purple/50',
+    hoverBorder: 'hover:border-brand-purple/70',
   },
   'board-game': {
-    bg: 'bg-brand-orange/5',
-    border: 'border-brand-orange/20',
-    icon: 'text-brand-orange',
+    bg: 'bg-brand-orange/25',
+    border: 'border-brand-orange/40',
+    icon: 'text-brand-orange-light',
     accent: 'bg-brand-orange',
-    hoverBorder: 'hover:border-brand-orange/50',
+    hoverBorder: 'hover:border-brand-orange/70',
   },
   special: {
-    bg: 'bg-brand-teal/5',
-    border: 'border-brand-teal/20',
-    icon: 'text-brand-teal',
-    accent: 'bg-brand-teal',
-    hoverBorder: 'hover:border-brand-teal/50',
+    bg: 'bg-brand-dark/60',
+    border: 'border-brand-dark/70',
+    icon: 'text-brand-teal-light',
+    accent: 'bg-brand-teal-light',
+    hoverBorder: 'hover:border-brand-teal-light/80',
   },
 }
 
@@ -40,7 +40,7 @@ export function Schedule() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="py-24 px-4 sm:px-6 lg:px-8 bg-brand-teal-dark relative overflow-hidden">
+    <section ref={ref} className="py-24 px-4 sm:px-6 lg:px-8 bg-brand-teal relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent" />
         <div className="absolute top-20 right-20 opacity-[0.04]">

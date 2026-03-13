@@ -14,7 +14,7 @@ export function Logo({ className = '', compact = false }: LogoProps) {
       <img
         src="/images/logo.png"
         alt="Velho Hábito"
-        className="w-10 h-10 rounded-full object-cover"
+        className="w-14 h-14 rounded-full object-cover"
       />
       {!compact && (
         <div className="flex flex-col leading-none">
@@ -22,7 +22,7 @@ export function Logo({ className = '', compact = false }: LogoProps) {
             VELHO HÁBITO
           </span>
           <span className="text-[0.65rem] tracking-[0.25em] text-brand-orange font-semibold uppercase">
-            Game Café
+            Gaming Café
           </span>
         </div>
       )}
